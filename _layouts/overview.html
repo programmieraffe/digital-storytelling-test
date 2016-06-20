@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body class="no-sidebar">
+    <div id="page-wrapper">
+
+        {% include header.html %}
+
+        <!-- Main -->
+        <div id="main-wrapper">
+            <div class="container">
+                <div id="content">
+
+                    <!-- Content -->
+
+                    <article>
+                        <h2>Übersicht</h2> LANG: {{page.lang}}
+                        <!-- 2DO: get page meta in correct language & include it!) -->
+                        <!-- thanks to: https://www.sylvaindurand.org/making-jekyll-multilingual/ -->
+                        {% assign meta_pages = site.pages | where:"ref","meta" %} {% assign meta_pages = meta_pages | where:"lang", page.lang %} {% for my_page in meta_pages %} {% if my_page.title %}
+                        <h1>
+          <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></h1> {% endif %}
+                        <!-- Content Markdowned: {{my_page.content | markdownify}} -->
+                        Content: {{my_page.content}} {% endfor %}
+
+                        <div class="meta-articles">
+                            {% assign meta_articles_lang = site.meta_articles | where:"lang", page.lang %}
+                            <h2>ARTICLES (2DO: Translate --> inlcude?...?):</h2> {% for article in meta_articles_lang %}
+                            <h2>{{ article.title }}</h2>
+                            <a href="{{article.url}}">Link</a> {% endfor %}
+                        </div>
+
+                        <!-- Meta articles -->
+                        {% assign meta_articles_lang = site.meta_articles | where:"lang", page.lang %}
+                        <div id="features-wrapper">
+                            <div class="row">
+                                {% for article in meta_articles_lang limit:3 %}
+                                <div class="4u 12u(medium)">
+
+                                    <!-- Box -->
+                                    <section class="box feature">
+                                        <a href="{{article.url}}" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+                                        <div class="inner">
+                                            <header>
+                                                <h2>{{ article.title }}</h2>
+                                                <p>Maybe here as well I think</p>
+                                            </header>
+                                            <p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+                                        </div>
+                                    </section>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- eo meta articles -->
+
+
+                        <!-- Features -->
+                        <div id="features-wrapper">
+                            <div class="row">
+                                <div class="4u 12u(medium)">
+
+                                    <!-- Box -->
+                                    <section class="box feature">
+                                        <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+                                        <div class="inner">
+                                            <header>
+                                                <h2>Put something here</h2>
+                                                <p>Maybe here as well I think</p>
+                                            </header>
+                                            <p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+                                        </div>
+                                    </section>
+
+                                </div>
+                                <div class="4u 12u(medium)">
+
+                                    <!-- Box -->
+                                    <section class="box feature">
+                                        <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+                                        <div class="inner">
+                                            <header>
+                                                <h2>An interesting title</h2>
+                                                <p>This is also an interesting subtitle</p>
+                                            </header>
+                                            <p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+                                        </div>
+                                    </section>
+
+                                </div>
+                                <div class="4u 12u(medium)">
+
+                                    <!-- Box -->
+                                    <section class="box feature">
+                                        <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+                                        <div class="inner">
+                                            <header>
+                                                <h2>Oh, and finally ...</h2>
+                                                <p>Here's another intriguing subtitle</p>
+                                            </header>
+                                            <p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+                                        </div>
+                                    </section>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </article>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- eo #page-wrapper -->
+
+    {% include footer.html %}
+
+</body>
+
+</html>
